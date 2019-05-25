@@ -7,8 +7,8 @@
         <h1>Quizz done !</h1>
         <h3>Your score in {{ quizz.name }}</h3>
         <p class="text-success points">{{ points*10 }}%</p>
-
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <a href="{{ path('score')}}" class="text-dark"> Good job! See your scores here</a>
- 
+        {% endif %}
     </div>
 {% endblock %}

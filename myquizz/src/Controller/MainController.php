@@ -39,6 +39,7 @@ class MainController extends AbstractController
         if($this->session->has('quizz')){
             if(($quizz->id != $this->session->get('quizz')->id)){
                 $this->session->set('count', 0);
+                $this->session->set('invitedscore', 0);
             }
         }
         else{
@@ -59,7 +60,17 @@ class MainController extends AbstractController
         $currentCount = $this->session->get('count') ?? 0;
 
         if($currentCount >= $totalQuestions){
-            return $this->getScore($user, $quizz);
+            if($user != null){
+                return $this->getScore($user, $quizz);
+            }
+            else{
+                $finalscore = $this->session->get('invitedscore');
+                return $this->render('main/score.html.twig', [
+                    'controller_name' => 'MainController',
+                    'points' => $finalscore,
+                    'quizz' => $quizz,
+                ]);
+            }
         }
         else{
             $this->session->set('question', $questions[$currentCount]);
@@ -88,17 +99,22 @@ class MainController extends AbstractController
                 $defaultData = $form->getData();
                 
                 if($user == null){
-                    //no saving datas
+                    $invitedscore = $this->session->get('invitedscore') ?? 0;
+                    $reponse = $form->getData()['reponse'];
+                    $result = $reponse->getReponseExpected();
+                    if($result == true){
+                        $invitedscore++;
+                        $this->session->set('invitedscore', $invitedscore);
+                    }
                 }
                 else {
                     $user->addReponse($defaultData['reponse']);
                     $this->getDoctrine()->getManager()->flush();
                 }
                 $currentCount++;
-                //$this->session->set('question', $questions[$this->count]);
+
                 $this->session->set('count', $currentCount);
-                //$currentQuestion = $this->session->get('question');
-                //dd($currentQuestion);
+
                 return $this->redirectToRoute('main', ['id' => $id]);
             }
     
