@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Score{% endblock %}
+
+{% block body %}
+    <div class="text-center text-dark m-2">
+        <h1>Quizz done !</h1>
+        <h3>Your score in {{ quizz.name }}</h3>
+        <p class="text-success points">{{ points*10 }}%</p>
+
+        <a href="{{ path('score')}}" class="text-dark"> Good job! See your scores here</a>
+ 
+    </div>
+{% endblock %}

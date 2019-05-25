@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+<h1 class="text-center m-2"> Welcome to Quizz</h1>
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <p class="text-center">{{ app.user.login }}</p>
+    <a class="btn btn-info" href="{{ path('user_edit', {id : app.user.id}) }}">Edit my profil</a></ br>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+        <h1 class="text-center text-dark m-2">{{ quizz.name }}</h1>
+    <div class="card m-4">
+        <div class="card-header text-center">
+            <h2>{{ question.question }}
+        </div>
+        <div class="card-body">
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

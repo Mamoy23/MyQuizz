@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Validate{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue parmi nous!</h1>
+    {% if valide is defined %}
+        <p>Bonjour {{valide.login}}, ton email {{valide.email}} est confirmé, merci !</p>
+    {% endif %}
+{% endblock %}

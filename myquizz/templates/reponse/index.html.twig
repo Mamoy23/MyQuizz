@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reponse index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center m-2">Reponse index</h1>
+    <a href="{{ path('reponse_new') }}" class="btn btn-success m-1"><i class="fas fa-plus mr-1"></i>Create</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>IdQuestion</th>
+                <th>Reponse</th>
+                <th>ReponseExpected</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reponse in reponses %}
+            <tr>
+                <td>{{ reponse.id }}</td>
+                <td>{{ reponse.idQuestion }}</td>
+                <td>{{ reponse.reponse }}</td>
+                <td>{{ reponse.reponseExpected ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('reponse_show', {'id': reponse.id}) }}" class="btn btn-secondary m-1"><i class="far fa-eye"></i></a>
+                    <a href="{{ path('reponse_edit', {'id': reponse.id}) }}" class="btn btn-primary m-1"><i class="far fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

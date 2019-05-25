@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center m-3">Users index</h1>
+    <a href="{{ path('users_new') }}" class="btn btn-success m-2"><i class="fas fa-plus mr-1"></i>Create</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Login</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.login }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    {% for role in user.roles %}
+                        <p>{{ role }}</p>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('users_show', {'id': user.id}) }}" class="btn btn-secondary m-1"><i class="far fa-eye"></i></a>
+                    <a href="{{ path('users_edit', {'id': user.id}) }}" class="btn btn-info m-1"><i class="far fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

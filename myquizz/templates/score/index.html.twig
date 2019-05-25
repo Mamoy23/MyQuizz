@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My score{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center m-2 text-dark">My score</h1>
+    <div class="m-4 text-center grid"> 
+    {% for key, score in points %}
+        <div>
+            <h3 class="text-dark"> {{ key }} </h3>
+            <p class="points text-success">{{ score*10 }}% </p>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

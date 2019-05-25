@@ -1,0 +1,28 @@
+body {
+    font-family: 'Quicksand', sans-serif !important;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    margin: 50px;
+}
+.item {
+    background-color: rgb(112, 112, 112);
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.grid a {
+    color: white;
+    text-decoration: none;
+}
+.grid a:hover{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.points {
+    font-size: 50px;
+}

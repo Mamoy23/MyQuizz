@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Categorie{% endblock %}
+
+{% block body %}
+    <h1 class="text-center m-2">Create new Categorie</h1>
+
+    {{ include('categorie/_form.html.twig') }}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('categorie_index') }}" class="btn btn-secondary m-1"><i class="fas fa-arrow-left mr-1"></i>Back</a>
+    {% endif %}
+{% endblock %}
